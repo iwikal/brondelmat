@@ -110,8 +110,9 @@ fn main() {
                 Event::Window { win_event, .. } => {
                     use sdl2::event::WindowEvent;
                     match win_event {
-                        WindowEvent::SizeChanged(..) => {
+                        WindowEvent::SizeChanged(x, y) => {
                             should_redraw = true;
+                            unsafe { gl::Viewport(0, 0, x, y); }
                         }
                         _ => {}
                     }
